@@ -9,8 +9,9 @@ public class RoutePoint {
     @GeneratedValue
     @Column(name = "id", unique = true, nullable = false)
     private long Id;
-    @Column(name = "id_route")
-    private long routeId;
+    @ManyToOne
+    @JoinColumn(name = "id_route")
+    private Route route;
 
     public long getId() {
         return Id;
@@ -20,11 +21,11 @@ public class RoutePoint {
         Id = id;
     }
 
-    public long getRouteId() {
-        return routeId;
+    public Route getRoute() {
+        return route;
     }
 
-    public void setRouteId(long routeId) {
-        this.routeId = routeId;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 }

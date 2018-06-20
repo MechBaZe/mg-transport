@@ -10,10 +10,13 @@ public class RoutePointGraph {
     @Column(name = "id", unique = true, nullable = false)
     private long Id;
 
-    @Column(name = "id_point_first")
-    private long firstPointId;
-    @Column(name = "id_point_second")
-    private long secondPointId;
+    @OneToOne
+    @JoinColumn(name = "id_point_first")
+    private RoutePoint firstPoint;
+
+    @OneToOne
+    @JoinColumn(name = "id_point_second")
+    private RoutePoint secondPoint;
     @Column(name = "time")
     private int time;
 
@@ -25,20 +28,20 @@ public class RoutePointGraph {
         Id = id;
     }
 
-    public long getFirstPointId() {
-        return firstPointId;
+    public RoutePoint getFirstPoint() {
+        return firstPoint;
     }
 
-    public void setFirstPointId(long firstPointId) {
-        this.firstPointId = firstPointId;
+    public void setFirstPoint(RoutePoint firstPoint) {
+        this.firstPoint = firstPoint;
     }
 
-    public long getSecondPointId() {
-        return secondPointId;
+    public RoutePoint getSecondPoint() {
+        return secondPoint;
     }
 
-    public void setSecondPointId(long secondPointId) {
-        this.secondPointId = secondPointId;
+    public void setSecondPoint(RoutePoint secondPoint) {
+        this.secondPoint = secondPoint;
     }
 
     public int getTime() {

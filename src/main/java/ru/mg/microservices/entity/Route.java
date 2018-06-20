@@ -2,6 +2,7 @@ package ru.mg.microservices.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ROUTE")
@@ -15,6 +16,8 @@ public class Route {
     private boolean ready;
     @Column(name = "time")
     private int time;
+    @OneToMany(mappedBy = "route")
+    private List<RoutePoint> points;
 
     public long getId() {
         return Id;
@@ -38,5 +41,13 @@ public class Route {
 
     public void setTime(int time) {
         this.time = time;
+    }
+
+    public List<RoutePoint> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<RoutePoint> points) {
+        this.points = points;
     }
 }
