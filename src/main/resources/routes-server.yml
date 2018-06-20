@@ -1,0 +1,17 @@
+spring:
+  application:
+     name: routes-service
+  freemarker:
+    enabled: false
+server.port: 2222
+
+management.security.enabled: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1111/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+
+
