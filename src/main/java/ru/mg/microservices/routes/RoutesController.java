@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.mg.microservices.entity.Route;
 
 import ru.mg.microservices.entity.RoutePoint;
-import ru.mg.microservices.repository.RoutePointGraphRepository;
 import ru.mg.microservices.repository.RoutePointsRepository;
 import ru.mg.microservices.repository.RoutesRepository;
 import ru.mg.microservices.utils.CalculatingUtil;
@@ -42,12 +41,13 @@ public class RoutesController {
     }
 
     @PostMapping("/addRoute")
-    public Integer addRoute(List<Long> routePointsList) {
+    public long addRoute(List<Long> routePointsList) {
         Route route = new Route();
         List<RoutePoint> routePoints = (List<RoutePoint>) routePointsRepository.findAll(routePointsList);
         route.setPoints(routePoints);
-        route.setTime(calculatingUtil.calculateRouteTime(routePoints));
+        // вызов серв2
+        // route.setTime(calculatingUtil.calculateRouteTime(routePoints));
         routesRepository.save(route);
-        return 0;
+        return route.getId();
     }
 }
