@@ -9,6 +9,9 @@ import ru.mg.microservices.repository.RoutePointGraphRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Утилитарный бин расчета время на маршрут
+ */
 @Component
 public class CalculatingUtil {
 
@@ -20,18 +23,21 @@ public class CalculatingUtil {
     }
 
     public Integer calculateRouteTime(List<RoutePoint> points) {
+        //берем все графы точек
         List<RoutePointGraph> routePointGraphs = (List<RoutePointGraph>) routePointGraphRepository.findAll();
         List<RoutePointGraph> filteredGraph = new ArrayList<>();
         for (RoutePoint r : points) {
+            //ищем первый по точке
             RoutePointGraph graph = routePointGraphs.stream().filter(g -> g.getFirstPoint().getId() == r.getId()).findFirst().get();
             filteredGraph.add(graph);
+            //убираем вторую точку из массива так как уже есть связь
             for (RoutePoint point : points) {
                 if (point.getId() == graph.getSecondPoint().getId()) {
                     points.remove(point);
                 }
             }
         }
-
+        //суммируем время на все точки через стрим
         return filteredGraph.stream().mapToInt(RoutePointGraph::getTime).sum();
     }
 }

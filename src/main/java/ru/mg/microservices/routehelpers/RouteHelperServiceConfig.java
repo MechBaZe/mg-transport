@@ -11,6 +11,10 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import javax.sql.DataSource;
 import java.util.logging.Logger;
 
+
+/**
+ * Конфиг сервиса хелпера, с компонент сканом и тд
+ */
 @Configuration
 @ComponentScan({"ru.mg.microservices.repository", "ru.mg.microservices.entity"})
 @EntityScan("ru.mg.microservices.entity")
@@ -24,7 +28,11 @@ public class RouteHelperServiceConfig {
             logger = Logger.getLogger(getClass().getName());
         }
 
-        @Bean
+    /**
+     * Инициализация датасорса
+     * @return dataSource
+     */
+    @Bean
         public DataSource dataSource() {
             logger.info("dataSource() invoked");
 

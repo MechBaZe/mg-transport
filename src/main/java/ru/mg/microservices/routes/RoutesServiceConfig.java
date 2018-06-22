@@ -12,6 +12,9 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import javax.sql.DataSource;
 import java.util.logging.Logger;
 
+/**
+ * Конфиг сервиса марштрутов, с компонент сканом и тд
+ */
 @Configuration
 @ComponentScan({"ru.mg.microservices.repository", "ru.mg.microservices.entity"})
 @EntityScan("ru.mg.microservices.entity")
@@ -24,7 +27,11 @@ public class RoutesServiceConfig {
             logger = Logger.getLogger(getClass().getName());
         }
 
-        @Bean
+    /**
+     * Конфигурим датасорс
+     * @return датасорс
+     */
+    @Bean
         public DataSource dataSource() {
             logger.info("dataSource() invoked");
 
