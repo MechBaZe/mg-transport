@@ -33,7 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.csrf().ignoringAntMatchers("/eureka/**").disable()
+                .authorizeRequests()
                 .antMatchers("/**").access("hasRole('USER')")
                 .antMatchers("/routehelpers-server/**").access("hasRole('SYSTEM')");
     }

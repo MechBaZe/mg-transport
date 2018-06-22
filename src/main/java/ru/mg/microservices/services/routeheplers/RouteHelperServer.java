@@ -13,7 +13,7 @@ import ru.mg.microservices.routehelpers.RouteHelperServiceConfig;
 public class RouteHelperServer {
 
 	public static void main(String[] args) {
-		System.setProperty("spring.config.name", "routeheplers-server");
+		System.setProperty("spring.config.name", "routehelpers-server");
 
 		SpringApplication.run(RouteHelperServer.class, args);
 	}
